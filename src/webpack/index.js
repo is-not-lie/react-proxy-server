@@ -93,7 +93,7 @@ const loaders = [
   },
   {
     test: /\.s(c|a)ss$/,
-    use: useStyleLoaders({ module: { mode: 'icss' } }, 'sass-loader', {
+    use: useStyleLoaders({ modules: { mode: 'icss' } }, 'sass-loader', {
       sassOptions: {
         javaScriptEnabled: true,
       },
@@ -101,7 +101,7 @@ const loaders = [
   },
   {
     test: /\.module\.s(c|a)ss$/,
-    use: useStyleLoaders({ module: { mode: 'local' } }, 'sass-loader', {
+    use: useStyleLoaders({ modules: { mode: 'local' } }, 'sass-loader', {
       sassOptions: { javaScriptEnabled: true },
     }),
   },
