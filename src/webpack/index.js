@@ -19,6 +19,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const fs = require('fs')
 
 const useStyleLoaders = (
   cssOptions = {},

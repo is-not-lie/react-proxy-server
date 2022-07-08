@@ -20,4 +20,4 @@ const getBackEndUrl = (ctx) => {
   return `${host}/${path}`;
 };
 
-module.exports = { ...paths, appConfig, override, __DEV__, __PROD__, getBackEndUrl };
+module.exports = { ...paths, appConfig, override, getBackEndUrl };
