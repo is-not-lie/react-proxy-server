@@ -1,6 +1,6 @@
 const hotMiddleware = require('webpack-hot-middleware')
 
-export default (compiler, options = {}) => {
+module.exports = (compiler, options = {}) => {
   const middleware = hotMiddleware(compiler, options);
 
   const koaMiddleware = async (ctx, next) => {
