@@ -149,7 +149,7 @@ const plugins = [
 
 if (appConfig.entry) entry = appConfig.entry;
 if (__DEV__) {
-  loaders.at(0)?.options.plugins.push(
+  loaders[0]?.options.plugins.push(
     'react-refresh/babel'
   );
   plugins.push(

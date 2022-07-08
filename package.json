@@ -1,10 +1,10 @@
 {
   "name": "react-proxy-server",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.2",
+  "main": "src/index.js",
   "author": "qrz",
   "license": "MIT",
-  "module": "index.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "node src/index.js"
   },
