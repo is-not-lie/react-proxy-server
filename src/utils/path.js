@@ -1,19 +1,26 @@
 const path = require('path')
 const fs = require('fs')
 
-const workDir = fs.realpathSync(process.cwd());
+const __DEV__ = process.env.NODE_ENV === 'development'
+const __PROD__ = process.env.NODE_ENV === 'production'
+const workDir = fs.realpathSync(process.cwd())
 
-const resolvePath = (realativePath) =>
-  path.resolve(workDir, realativePath);
+const resolvePath = (realativePath) => path.resolve(workDir, realativePath)
 
-const configDir = resolvePath('configs');
-const middlewareDir = resolvePath('middleware');
-const routerDir = resolvePath('routers');
-const webpackOverridePath = resolvePath('webpack_override.js');
-const outputPath = path.resolve(__dirname, '../public');
-const tmplPath = path.resolve(__dirname, '../template/index.pug');
+const configDir = resolvePath('configs')
+const middlewareDir = __DEV__
+  ? resolvePath('middleware')
+  : path.resolve(__dirname, '../middleware/custom')
+const routerDir = __DEV__ ? resolvePath('routers') : path.resolve(__dirname, '../routers/custom')
+const webpackOverridePath = resolvePath('webpack_override.js')
+const outputPath = path.resolve(__dirname, '../public/js')
+const tmplPath = path.resolve(__dirname, '../template/index.pug')
+const copyMiddlewareDir = resolvePath('middleware')
+const copyRoutesDir = resolvePath('routers')
 
 module.exports = {
+  __DEV__,
+  __PROD__,
   workDir,
   configDir,
   webpackOverridePath,
@@ -21,5 +28,7 @@ module.exports = {
   tmplPath,
   middlewareDir,
   routerDir,
-  resolvePath,
-};
+  copyMiddlewareDir,
+  copyRoutesDir,
+  resolvePath
+}

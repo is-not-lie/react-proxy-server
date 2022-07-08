@@ -6,6 +6,10 @@ const {
   override,
   __DEV__,
   __PROD__,
+  copyMiddlewareDir,
+  copyRoutesDir,
+  middlewareDir,
+  routerDir
 } = require('../utils')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -14,6 +18,7 @@ const { HotModuleReplacementPlugin, ProgressPlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const useStyleLoaders = (
   cssOptions = {},
@@ -164,6 +169,22 @@ if (__PROD__) {
       chunkFilename: 'css/[name].[contenthash:10].chunk.css',
     })
   );
+  const isCopyMiddleware = fs.existsSync(copyMiddlewareDir)
+  const isCopyRoutes = fs.existsSync(copyRoutesDir)
+  if (isCopyMiddleware || isCopyRoutes) {
+    plugins.push(new CopyWebpackPlugin({
+      patterns: [
+        isCopyMiddleware && {
+          from: copyMiddlewareDir,
+          to: middlewareDir
+        },
+        isCopyRoutes && {
+          from: copyRoutesDir,
+          to: routerDir
+        }
+      ].filter(Boolean)
+    }))
+  }
 }
 
 const config = {

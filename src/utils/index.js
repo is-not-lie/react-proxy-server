@@ -2,8 +2,6 @@ const fs = require('fs')
 const paths = require('./path')
 
 const { configDir, webpackOverridePath } = paths
-const __DEV__ = process.env.NODE_ENV === 'development';
-const __PROD__ = process.env.NODE_ENV === 'production';
 
 const appConfig = fs.existsSync(`${configDir}/index.js`)
   ? require(`${configDir}/index.js`)
